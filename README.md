@@ -10,7 +10,6 @@
 
 
 
-
 # Taskテーブル
 
 | Column      | Data type |
