@@ -20,6 +20,8 @@
 | description | text      |
 | deadline    | datetime  |
 | user_id(FK) | integer   |
+|             |           |
+|             |           |
 
 
 # Statusテーブル
