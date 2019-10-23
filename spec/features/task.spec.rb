@@ -33,6 +33,7 @@ RSpec.feature "タスク管理機能", type: :feature do
   expect(page).to have_content 'test_task_01'
   expect(page).to have_content 'test_task_02'
 
+  
   end
 
   scenario "タスク詳細のテスト" do
