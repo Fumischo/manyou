@@ -42,12 +42,13 @@ group :development, :test do
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails'
   gem 'faker'
-  gem 'capybara', '~> 2.13'
+  # gem 'capybara', '~> 2.13'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
   gem 'factory_bot_rails'
   gem 'spring-commands-rspec'
+  gem 'launchy'
 end
 
 group :development do
@@ -59,7 +60,7 @@ group :development do
 end
 
 group :test do
-  # gem 'capybara', '>= 2.15'
+  gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # gem 'chromedriver-helper'
   gem 'rspec-rails'

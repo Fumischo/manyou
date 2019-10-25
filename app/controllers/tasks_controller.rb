@@ -31,8 +31,11 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
-    @task.update!(task_params)
+    if @task.update(task_params)
     redirect_to tasks_path, notice: "更新完了"
+    else 
+      render :edit
+    end
   end
 
   def destroy
