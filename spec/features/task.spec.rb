@@ -4,9 +4,9 @@ require 'rails_helper'
 # このRSpec.featureの右側に、「タスク管理機能」のように、テスト項目の名称を書きます（do ~ endでグループ化されています）
 RSpec.feature "タスク管理機能", type: :feature do
   background do
-    FactoryBot.create(:task, description: "変更")
-    FactoryBot.create(:second_task, name: "名前変更")
-    # FactoryBot.create(:second_task, name: '付け加えた名前３', description: '付け加えたコンテント')
+    FactoryBot.create(:task, description: " 詳細変更")
+    FactoryBot.create(:second_task, name: "タイトル名変更")
+    
   end
 
   scenario "タスク一覧のテスト" do
@@ -38,8 +38,9 @@ RSpec.feature "タスク管理機能", type: :feature do
     Task.create!(name: 'test_task_03', description: 'samplesample')
 
     visit tasks_path
-    
     save_and_open_page
   end
 end
+
+
 
