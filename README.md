@@ -9,8 +9,6 @@
 | password_digest | string    |
 
 
-
-
 # Taskテーブル
 
 | Column      | Data type |
