@@ -10,14 +10,13 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="task_title">
+  <div class="form-group">
     <%= t.label :name %><br>
-    <%= t.text_field :name %>
+    <%= t.text_field :name, class: 'form-control' %>
   </div>
-  <div class="task_title">
+  <div class="form-group">
     <%= t.label :description %><br>
-    <%= t.text_area :description %>
+    <%= t.text_area :description, class: 'form-control', rows: 10 %>
   </div>
   <%= t.submit %>
 <% end %>
