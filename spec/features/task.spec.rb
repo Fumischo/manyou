@@ -19,7 +19,7 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   scenario "タスク作成のテスト" do
     visit new_task_path
-    save_and_open_page
+    # save_and_open_page
     fill_in 'task_name', with: 'test_task_01'
     fill_in 'task_description', with: 'test_task_02'
     click_on '登録する'
@@ -35,10 +35,10 @@ RSpec.feature "タスク管理機能", type: :feature do
 
   scenario "タスクが作成日時の降順に並んでいるかのテスト" do
     Task.create!(name: 'test_task_01', description: 'testtesttest')
-    Task.create!(name: 'test_task_03', description: 'samplesample')
+    Task.create!(name: 'test_task_02', description: 'samplesample')
 
     visit tasks_path
-    save_and_open_page
+    # save_and_open_page
   end
 end
 
