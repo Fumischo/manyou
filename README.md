@@ -1,30 +1,38 @@
+## バージョン情報
+Ruby 2.6.3
+
+Rails 5.2.3
+
 
 # Userテーブル
 
-| Column          | Data type |
-| --------------- | --------: |
-| id              |           |
-| name            | string    |
-| email           | string    |
-| password_digest | string    |
+| カラム名            | データ型    |
+| --------------- | ------: |
+| id              |         |
+| name            | string  |
+| email           | string  |
+| password_digest | string  |
+| admin           | boolean |
+|                 |         |
 
 
 # Taskテーブル
 
-| Column      | Data type |
-| ----------- | --------: |
-| id          |           |
-| title       | string    |
-| description | text      |
-| deadline    | datetime  |
-| user_id(FK) | integer   |
-|             |           |
-|             |           |
+| カラム名        | データ型     |
+| ----------- | -------: |
+| id          |          |
+| title       | string   |
+| description | text     |
+| deadline    | datetime |
+| user_id(FK) | integer  |
+| priority    | integer  |
+| user_id     | bigint   |
+|             |          |
 
 
 # Statusテーブル
 
-| Column        | Data Type |
+| カラム名       | データ型 |
 | ------------- | --------: |
 | id            |           |
 | status_id(FK) | integer   |
