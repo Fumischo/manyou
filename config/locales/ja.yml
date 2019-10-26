@@ -1,6 +1,17 @@
+
 ---
 ja:
   activerecord:
+    models:
+      user: ユーザー
+      task: タスク
+    attributes:
+      user:
+        id: ID
+      task:
+        id: ID
+        description: 詳細
+        name: タイトル
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
@@ -205,3 +216,4 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+  
