@@ -17,7 +17,7 @@ gem 'rails-i18n'
 gem 'bcrypt', '3.1.11'
 gem 'bootstrap'
 gem 'bootsnap', '>= 1.1.0', require: false
-
+gem 'jquery-rails'
 
 
 group :development, :test do
