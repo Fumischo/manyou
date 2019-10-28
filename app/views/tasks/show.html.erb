@@ -1,5 +1,17 @@
 <h1>タスク詳細画面</h1>
-<p>タイトル: <%= @task.name %></p>
-<p>詳細: <%= @task.description %></p>
+<div class="d-flex align-items-center mt-4 mb-4">
+  <div class="ml-auto tasks__linkBox">
+    <%= link_to '一覧', tasks_path, class: 'btn btn-outline-dark' %>
+    <%= link_to '編集', edit_task_path(@task), class: 'btn btn-outline-dark' %>
+  </div>
+</div>
 
-<%= link_to "back", tasks_path %>
+<% if flash[:notice] %>
+  <div class="alert alert-primary"><%= flash[:notice] %></div>
+<% end %>
+
+<div class="p-comment__list">
+  <div class="p-comment__listTitle"></div>
+<p>タイトル: <%= @task.name %></p>
+    <p>詳細: <%= @task.description %></p>
+</div>

@@ -1,3 +1,7 @@
-<h1>編集</h1>
-
- <%= render 'form' %>
+<div class="d-flex align-items-center">
+  <h1>編集</h1>
+  <div class="ml-auto tasks__linkBox">
+    <%= link_to '一覧', tasks_path, class: 'btn btn-outline-dark' %>
+  </div>
+</div>
+<%= render 'form', locals: { task: @task } %>
