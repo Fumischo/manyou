@@ -1,25 +1,41 @@
-<h1>タスク一覧</h1>
+<div class="d-flex align-items-center">
+  <h1>タスク一覧</h1>
+  <div class="ml-auto tasks__linkBox">
+    <a href="/tasks/new" class="btn btn-outline-dark">新規作成</a>
+  </div>
+</div>
 
-<p><%= notice %></p>
 
-  <table>
-    <tr>
-      <th>タイトル</th>
-      <th>詳細</th>
-    </tr>
+<% if flash[:notice] %>
+  <div class="alert alert-danger"><%= flash[:notice] %></div>
+<% end %>
 
-    <% @tasks.each do |task| %>
+
+  <table class="table table-hover boards__table">
+    <thead class="thead-dark">
       <tr>
-        <td><%= task.name %></td>
-        <td><%= task.description %></td>
-        <td><%= link_to '詳細', task_path(task.id) %></td>
-        <td><%= link_to "編集", edit_task_path(task.id), data: { confirm: '本当に編集していいですか？' } %></td>
-        <td><%= link_to '削除', task_path(task.id), method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
+        <th>タイトル</th>
+        <th>詳細</th>
+        <th>作成日時</th>
+        <th>更新日時</th>
+        <th colspan="5"></th>
       </tr>
-    <% end %>
-  </table>
+    </thead>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <tr>
+          <td><%= task.name %></td>
+          <td><%= task.description %></td>
+          <td><%= task.created_at.to_s(:datetime_jp) %></td>
+          <td><%= task.updated_at.to_s(:datetime_jp) %></td>
+          <td><%= link_to '詳細', task_path(task.id), class: 'btn btn-outline-dark' %></td>
+          <td><%= link_to "編集", edit_task_path(task.id), class: 'btn btn-outline-dark', data: { confirm: '本当に編集していいですか？' } %></td>
+          <td><%= link_to '削除', task_path(task.id), class: 'btn btn-outline-dark', method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+    </table>
 
-<%= link_to '新規追加', new_task_path %>
 
 
 

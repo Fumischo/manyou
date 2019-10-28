@@ -12,10 +12,13 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+gem 'slim-rails'
 gem 'rails-i18n'
-
-
+gem 'bcrypt', '3.1.11'
+gem 'bootstrap'
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'jquery-rails'
+
 
 group :development, :test do
   # gem 'byebug', platforms: [:mri, :mingw, :bundlex64_mingw]
@@ -23,7 +26,6 @@ group :development, :test do
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails'
   gem 'faker'
-  # gem 'capybara', '~> 2.13'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
@@ -37,7 +39,6 @@ group :development do
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  # gem 'spring-commands-rspec'
 end
 
 group :test do
