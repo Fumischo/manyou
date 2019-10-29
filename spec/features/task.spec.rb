@@ -28,8 +28,9 @@ RSpec.feature "タスク管理機能", type: :feature do
   end
 
   scenario "タスク詳細のテスト" do
-    @task = Task.create(name:'ttt', description: 'ttt')
+    @task = Task.create(name:'ttt', description: 'ttt',deadline: '2019.10.29')
     visit task_path(@task)
+    page.first("#show").click
     expect(page).to have_content 'ttt'
   end
 
@@ -40,7 +41,27 @@ RSpec.feature "タスク管理機能", type: :feature do
     visit tasks_path
     # save_and_open_page
   end
+
+  scenario "タスクが作成日時の降順に並んでいるかのテスト" do
+    visit tasks_path
+    click_on '終了期限でソートする'
+    expect(page).to have_content 'Factoryで作ったデフォルトのタイトル１'
+    expect(page).to have_content 'Factoryで作ったデフォルトのコンテント１'
+  end
+  
+  scenario "タスクが終了期限の降順に並んでいるかのテスト" do
+    visit tasks_path
+    click_on '終了期限でソートする'
+    expect(page).to have_content 'Factoryで作ったデフォルトのタイトル１'
+    expect(page).to have_content 'Factoryで作ったデフォルトのコンテント１'
+  end
+
+  scenario "viewにてタスクが絞り込めるかのテスト" do
+    visit tasks_path
+    fill_in 'task_name', with: 'Factoryで作ったデフォルトのタイトル１'
+    select '未着手', from: '未着手'
+    click_button 'search'
+    expect(page).to have_content 'Factoryで作ったデフォルトのタイトル１'
+    expect(page).to have_content '未着手'
+  end
 end
-
-
-

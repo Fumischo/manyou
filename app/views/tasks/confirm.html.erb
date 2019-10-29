@@ -11,6 +11,7 @@
   <p>本文:<%= @task.description %></p>
   <p>終了期限:<%= @task.deadline %></p>
   <p>進捗状況:<%= @task.status %></p>
+  <p>優先度:<%= @task.priority %></p>
   <%= form.submit  "登録する" %>
 
   <%= form.submit "戻る", name: 'back' %>
