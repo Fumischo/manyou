@@ -20,6 +20,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'jquery-rails'
 gem 'ransack'
 gem 'kaminari'
+gem 'enum_help'
+gem 'pry-rails'
 
 
 group :development, :test do
