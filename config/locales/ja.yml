@@ -1,25 +1,58 @@
 
 ---
 ja:
+  tasks:
+    index:
+      title: タスク一覧
+      name: タスク名
+      description: タスク詳細
+    show:
+      title: タスク詳細
+      name: タスク名
+      description: タスク詳細
+    new:
+      title: タスク作成
+    edit:
+      title: タスク編集
+    confirm:
+      name:
+    form:
+      name: タスク名
+      description: タスク詳細
   activerecord:
     models:
-      user: ユーザー
       task: タスク
     attributes:
       task:
-        name: タイトル
+        name: タスク名
+        description: タスク詳細
         id: ID
-        description: 詳細
-        status: ステータス
-        priority: 優先順位
-        created_at: 登録日時
-        updated_at: 更新日時
+        created_at: 作成日時
+        update_at: 更新日時
+        deadline: 終了期限
+        status: 進捗
+        priority: 優先度
+        high: 高
+        medium: 中
+        low: 低
     errors:
-      messages:
-        record_invalid: 'バリデーションに失敗しました: %{errors}'
-        restrict_dependent_destroy:
-          has_one: "%{record}が存在しているので削除できません"
-          has_many: "%{record}が存在しているので削除できません"
+      models:
+        task:
+          attributes:
+            name:
+              blank: が記入されていません
+            description:
+              blank: が記入されていません
+  enums:  
+    task:
+      status:
+        notyet: 未着手
+        working: 着手中
+        completed: 完了
+      priority:
+        high: 高
+        medium: 中
+        low: 低 
   date:
     abbr_day_names:
     - 日
