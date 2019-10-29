@@ -18,9 +18,7 @@ gem 'bcrypt', '3.1.11'
 gem 'bootstrap'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'jquery-rails'
-gem 'ransack'
 gem 'kaminari'
-gem 'enum_help'
 gem 'pry-rails'
 
 
@@ -54,3 +52,5 @@ group :test do
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'enum_help'
+gem 'ransack'
