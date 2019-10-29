@@ -12,6 +12,9 @@
 
 <div class="p-comment__list">
   <div class="p-comment__listTitle"></div>
-<p>タイトル: <%= @task.name %></p>
-    <p>詳細: <%= @task.description %></p>
+  <p>タイトル: <%= @task.name %></p>
+  <p>詳細: <%= @task.description %></p>
+  <p>終了期限: <%= @task.deadline.strftime("%Y年%m月%d日") %></p>
+  <p>進捗状況: <%= @task.status %></p>
+
 </div>
