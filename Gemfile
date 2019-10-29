@@ -18,6 +18,8 @@ gem 'bcrypt', '3.1.11'
 gem 'bootstrap'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'jquery-rails'
+gem 'ransack'
+gem 'kaminari'
 
 
 group :development, :test do
