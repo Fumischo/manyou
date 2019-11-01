@@ -9,7 +9,3 @@ class Task < ApplicationRecord
 
   scope :search_name_and_status, -> (params) { where("name LIKE ?", "%#{params[:name]}%").where("status::text LIKE ?", "%#{params[:status]}%") }
 end
-  # def self.task(params)
-  #   Task.where("name LIKE ?", "%#{params[:name]}%").where("status::text LIKE ?", "%#{params[:status]}%")
-  # end
-  # scope :task, -> (params) {where("status::text LIKE ?", "%#{params[:status]}%")}
