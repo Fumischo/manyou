@@ -1,4 +1,4 @@
-<%= form_with(model: @task, local: true, url: choose_new_or_edit ) do |t| %>
+<%= form_with(model: @task, local: true ) do |t| %>
   <% if @task.errors.any? %>
     <div id="error_explanation">
       <h2><%= @task.errors.count %>件のエラーがあります。</h2>
@@ -10,6 +10,7 @@
       </ul>
     </div>
   <% end %>
+  
   <div class="form-group">
     <%= t.label :name %><br>
     <%= t.text_field :name, class: 'form-control' %>
@@ -18,7 +19,20 @@
     <%= t.label :description %><br>
     <%= t.text_area :description, class: 'form-control', rows: 10 %>
   </div>
+  <div class="form-group">
+    <%= t.label :deadline %>
+    <%= t.date_select :deadline, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= t.label :status %>
+    <%= t.select :status, Task.statuses.keys.map {|k| [I18n.t("enums.task.status.#{k}"), k]} %>
+  </div>
+  <div class="form-group">
+    <%= t.label :priority %>
+    <%= t.select :priority, Task.priorities.keys.map {|k| [I18n.t("enums.task.priority.#{k}"), k]} %>
+  </div>
   <%= t.submit "保存", class: 'btn btn-primary' %>
 <% end %>
 <br>
 <%= link_to "一覧画面にもどる", tasks_path %>
+    

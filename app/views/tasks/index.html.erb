@@ -5,10 +5,20 @@
   </div>
 </div>
 
+<%= form_tag(root_path,:method => 'get') do %>
+  <%= text_field_tag :name%>
+  <%= select_tag :status, options_for_select([['選択', nil], ['未着手', '0'], ['着手中', '1'], ['完了', '2']]) %>
+  <%= submit_tag '検索', :name => nil, :status => nil %>
+  <%= link_to "終了期限でソートする", tasks_path(sort_deadline: "true"), class: 'btn btn-outline-dark' %>
+  <%= link_to "優先順位でソートする", tasks_path(sort_priority: "true"), class: 'btn btn-outline-dark' %>
+<% end %>
+
 
 <% if flash[:notice] %>
   <div class="alert alert-danger"><%= flash[:notice] %></div>
 <% end %>
+
+
 
 
   <table class="table table-hover boards__table">
@@ -17,7 +27,9 @@
         <th>タイトル</th>
         <th>詳細</th>
         <th>作成日時</th>
-        <th>更新日時</th>
+        <th>終了期限</th>
+        <th>進捗状況</th>
+        <th>優先順位</th>
         <th colspan="5"></th>
       </tr>
     </thead>
@@ -27,7 +39,9 @@
           <td><%= task.name %></td>
           <td><%= task.description %></td>
           <td><%= task.created_at.to_s(:datetime_jp) %></td>
-          <td><%= task.updated_at.to_s(:datetime_jp) %></td>
+          <td><%= task.deadline.strftime("%Y年%m月%d日") %></td>
+          <td><%= task.status_i18n%></td>
+          <td><%= task.priority_i18n %></td>
           <td><%= link_to '詳細', task_path(task.id), class: 'btn btn-outline-dark' %></td>
           <td><%= link_to "編集", edit_task_path(task.id), class: 'btn btn-outline-dark', data: { confirm: '本当に編集していいですか？' } %></td>
           <td><%= link_to '削除', task_path(task.id), class: 'btn btn-outline-dark', method: :delete ,data: { confirm: '本当に削除していいですか？' } %></td>
@@ -35,8 +49,6 @@
       <% end %>
     </tbody>
     </table>
-
-
-
+  <%= paginate @tasks %> 
 
 

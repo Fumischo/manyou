@@ -34,7 +34,6 @@ Rails 5.2.3
 | email           | string  |
 | password_digest | string  |
 | admin           | boolean |
-|                 |         |
 
 
 # Taskテーブル
