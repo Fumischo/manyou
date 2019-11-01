@@ -40,7 +40,7 @@
           <td><%= task.description %></td>
           <td><%= task.created_at.to_s(:datetime_jp) %></td>
           <td><%= task.deadline.strftime("%Y年%m月%d日") %></td>
-          <td><%= task.status_i18n %></td>
+          <td><%= task.status_i18n%></td>
           <td><%= task.priority_i18n %></td>
           <td><%= link_to '詳細', task_path(task.id), class: 'btn btn-outline-dark' %></td>
           <td><%= link_to "編集", edit_task_path(task.id), class: 'btn btn-outline-dark', data: { confirm: '本当に編集していいですか？' } %></td>
@@ -49,8 +49,6 @@
       <% end %>
     </tbody>
     </table>
-
-
-
+  <%= paginate @tasks %> 
 
 
