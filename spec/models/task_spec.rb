@@ -4,7 +4,7 @@ RSpec.describe Task, type: :model do
 
   it "nameが空ならバリデーションが通らない" do
     task = Task.new(name: '', description: '失敗テスト')
-    
+
     expect(task).not_to be_valid
   end
 
@@ -14,20 +14,34 @@ RSpec.describe Task, type: :model do
   end
 
   it "nameとdescriptionに内容が記載されていればバリデーションが通る" do
-    task = Task.new(name:'テスト', description:'テストテスト')
+    task = Task.new(name:'テスト', description:'テストテスト', deadline: '2019.10.30')
     expect(task).to be_valid
   end
 
-  it "タスクモデルに作成したscopeを使用して検索できるかのテスト" do
-    FactoryBot.create(:task)
-    FactoryBot.create(:second_task)
-    FactoryBot.create(:third_task)
-    FactoryBot.create(:task, status: "未着手")
-    FactoryBot.create(:second_task, status: "未着手")
-    expect_task = FactoryBot.create(:third_task, status: "未着手")
-    result = Task.search(task: {name: "タイトル３", status: "未着手"})
-    expect(result[0].id).to be expect_task.id
-    expect(result.size).to eq 1
-    save_and_open_page
+  it "deadlineが空ならバリデーションが通らない" do
+    task = Task.new(name: 'testtest1', description: 'testtest1', deadline: '')
+    expect(task).not_to be_valid
   end
-end
+
+  it "name、description、status、deadline、priorityバリデーションが通る" do
+    task = Task.new(name: 'testtest1', description: 'testtest1', deadline: '2019.10.30', status: 0, priority: 1)
+    expect(task).to be_valid
+  end
+
+  before do
+    @task = FactoryBot.create(:task)
+    @task2 = FactoryBot.create(:second_task)
+    @task3 = FactoryBot.create(:third_task)
+  end
+  
+  context "modelにscopeによる絞りこみ検索の確認" do
+    it "nameとstatusのand検索のscopeメソッドの確認" do
+      val = { 
+        name: @task.name,
+        status: Task.statuses[@task.status]
+      }
+      expect(Task.search_name_and_status(val).first.id).to eq(@task.id)
+    end
+  end
+  end
+
