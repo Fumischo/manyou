@@ -10,8 +10,4 @@ class Task < ApplicationRecord
   scope :search_name, -> (params) { where("name LIKE ?", "%#{params[:name]}%")}
   scope :search_status, -> (params) { where("status::text LIKE ?", "%#{params[:status]}%")}
   scope :search_name_and_status, -> (params) { where("name LIKE ?", "%#{params[:name]}%").where("status::text LIKE ?", "%#{params[:status]}%") }
-  # scope :search_name_and_status, -> (params) {where('(name LIKE ?) AND (status::text LIKE ?)',
-  #   "%#{params[:name]}%",
-  #   "%#{params[:status]}%"
-  #   )}
 end

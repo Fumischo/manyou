@@ -43,5 +43,22 @@ RSpec.describe Task, type: :model do
       expect(Task.search_name_and_status(val).first.id).to eq(@task.id)
     end
   end
-  end
+
+    it "nameとstatusのscopeメソッドによるnameのみの検索できるかの確認" do
+      val = { 
+        name: @task.name
+      }
+      expect(Task.search_name(val).first.id).to eq(@task.id)
+    end
+    it "nameとstatusのscopeメソッドによるstatusのみの検索できるかの確認" do
+      val = {
+        status: Task.statuses[@task.status]
+      }
+      expect(Task.search_status(val).first.id).to eq(@task.id)
+    end
+end
+
+
+
+# end
 
