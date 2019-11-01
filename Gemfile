@@ -20,18 +20,21 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'jquery-rails'
 gem 'kaminari'
 gem 'pry-rails'
+gem 'pry-rails'
+gem 'pry-byebug'
+gem 'pry-doc'
+gem 'kaminari-bootstrap', '~> 3.0.1'
+
 
 
 group :development, :test do
   # gem 'byebug', platforms: [:mri, :mingw, :bundlex64_mingw]
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
-  gem 'factory_bot_rails'
   gem 'faker'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'selenium-webdriver'
-  gem 'factory_bot_rails'
   gem 'spring-commands-rspec'
   gem 'launchy'
 end
@@ -49,6 +52,7 @@ group :test do
   gem 'rspec-rails'
   gem 'database_cleaner'
   gem 'webdrivers'
+  gem 'factory_bot_rails'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
