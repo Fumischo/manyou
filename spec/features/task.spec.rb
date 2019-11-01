@@ -33,7 +33,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(page).to have_content 'Factoryで作ったデフォルトのタイトル3'
     expect(page).to have_content 'Factoryで作ったデフォルトのタイトル2'
     expect(page).to have_content 'Factoryで作ったデフォルトのタイトル1'
-    save_and_open_page
+    # save_and_open_page
   end
 
 

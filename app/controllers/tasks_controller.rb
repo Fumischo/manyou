@@ -6,12 +6,16 @@ class TasksController < ApplicationController
     # @tasks = Task.all.page(params[:page])
     # @q = Task.ransack(params[:q])
     # @tasks = @q.result(distinct: true)
-    if params[:sort_deadline]  == 'true'
+    if params[:name].present? && params[:status].present? 
+      @tasks = Task.search_name_and_status(params).page(params[:page]).per(8)
+    elsif params[:name].present?
+      @tasks = Task.search_name(params).page(params[:page]).per(8)
+    elsif params[:status].present? 
+    @tasks = Task.search_status(params).page(params[:page]).per(8)
+    elsif params[:sort_deadline]  == 'true'
       @tasks = Task.order(deadline: :desc).page(params[:page]).per(8)
     elsif params[:sort_priority] == 'true'
       @tasks = Task.order(priority: :asc).page(params[:page]).per(8)
-    elsif params[:name]
-      @tasks = Task.search_name_and_status(params).page(params[:page]).per(8)
     else
       @tasks = Task.order(created_at: :desc).page(params[:page]).per(8)
     end

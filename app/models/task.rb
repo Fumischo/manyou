@@ -7,5 +7,11 @@ class Task < ApplicationRecord
   enum status: { notyet: 0, working: 1, completed: 2}
   enum priority: { high: 0, medium: 1, low: 2}
 
+  scope :search_name, -> (params) { where("name LIKE ?", "%#{params[:name]}%")}
+  scope :search_status, -> (params) { where("status::text LIKE ?", "%#{params[:status]}%")}
   scope :search_name_and_status, -> (params) { where("name LIKE ?", "%#{params[:name]}%").where("status::text LIKE ?", "%#{params[:status]}%") }
+  # scope :search_name_and_status, -> (params) {where('(name LIKE ?) AND (status::text LIKE ?)',
+  #   "%#{params[:name]}%",
+  #   "%#{params[:status]}%"
+  #   )}
 end

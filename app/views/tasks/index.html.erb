@@ -6,8 +6,8 @@
 </div>
 
 <%= form_tag(root_path,:method => 'get') do %>
-  <%= text_field_tag :name %>
-  <%= select_tag :status, options_for_select([['選択'], ['未着手', '0'], ['着手中', '1'], ['完了', '2']]) %>
+  <%= text_field_tag :name%>
+  <%= select_tag :status, options_for_select([['選択', nil], ['未着手', '0'], ['着手中', '1'], ['完了', '2']]) %>
   <%= submit_tag '検索', :name => nil, :status => nil %>
   <%= link_to "終了期限でソートする", tasks_path(sort_deadline: "true"), class: 'btn btn-outline-dark' %>
   <%= link_to "優先順位でソートする", tasks_path(sort_priority: "true"), class: 'btn btn-outline-dark' %>
