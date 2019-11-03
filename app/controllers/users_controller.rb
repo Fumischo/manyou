@@ -1,15 +1,21 @@
 class UsersController < ApplicationController
   def new
-    @user = User.new
+    if logged_in?
+      redirect_to tasks_path, notice: 'すでにログインしています'
+    else
+      @user = User.new
+    end
   end
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      redirect_to user_path(@user.id)
-    else
-      render 'new'
-    end
+      if @user.save
+        flash[:notice] = '登録しました'
+        session[:user_id] = @user.id
+        redirect_to tasks_path
+      else
+        render 'new'
+      end
   end
 
   def show
