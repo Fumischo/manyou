@@ -2,9 +2,8 @@ Rails.application.routes.draw do
   root to: 'tasks#index'
   resources :sessions, only: [:new, :create, :destroy]
   resources :users
-  resources :tasks do
-    collection do
-      post :confirm
-    end
+  resources :tasks 
+  namespace path:admin do
+    resources :users
   end
 end
