@@ -11,18 +11,26 @@
   </div>
 <% end %>
 
-<%= form_with(model: [:admin, @user, local: true) do |f| %>  
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+  <% if @admin %>
+    <%= link_to '一覧',admin_users_path, class: 'nav-link' %>
+  <% end %>
+    <%= form_with(model: [:admin, @user], local: true) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name, class: 'form-control' %>
 
-  <%= f.label :email %>
-  <%= f.email_field :email %>
+    <%= f.label :email %>
+    <%= f.email_field :email, class: 'form-control' %>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+    <%= f.label :password %>
+    <%= f.password_field :password, class: 'form-control' %>
 
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
 
-  <%= f.submit "Create my account" %>
-<% end %>
+    <%= f.check_box :admin ,{}, "true", "false" %>
+    <%= f.label :admin, "管理者権限" %>
+    <br>
+    <%= f.submit "Create user", class: 'btn btn-primary'%>
+    <% end %>
+  </div>
+</div>
