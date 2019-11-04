@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update,:destroy]
   before_action :involved_task
-  before_action :gurantee_accurate_user, only: [:show, :edit, :update, :destroy]
+  before_action :gurantee_accurate_user, only: [:show]
 
   Per=8
 
@@ -91,7 +91,7 @@ class TasksController < ApplicationController
     def gurantee_accurate_user
       if current_user.id != @task.user_id && current_user.admin
         redirect_to tasks_path
-        flash[:notice] = "権限ありません"
+        flash[:notice] = "管理者権限がありません"
       end
     end
   end 

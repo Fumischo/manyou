@@ -36,7 +36,7 @@ RSpec.feature "管理者機能", type: :feature do
   scenario "ユーザー編集のテスト" do
     visit admin_users_path
     click_link '編集', match: :first
-    fill_in 'user_email', with: 'hoge@example.com'
+    fill_in 'user_email', with: 'test1@example.com'
     fill_in 'user_password', with: 'damnit'
     fill_in 'user_password_confirmation', with: 'damnit'
     click_on 'Create user'
@@ -46,7 +46,7 @@ RSpec.feature "管理者機能", type: :feature do
   scenario "ユーザー削除のテスト" do
     visit new_admin_user_path
     fill_in 'user_name', with: 'fumi'
-    fill_in 'user_email', with: 'hoge@test.com'
+    fill_in 'user_email', with: 'test1@example.com'
     fill_in 'user_password', with: 'damnit'
     fill_in 'user_password_confirmation', with: 'damnit'
     click_on 'Create user'
