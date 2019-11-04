@@ -1,43 +1,43 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update,:destroy]
-  before_action :require_task
+  before_action :involved_task
+  before_action :gurantee_accurate_user, only: [:show, :edit, :update, :destroy]
 
   Per=8
 
   def index
+    # @tasks = Task.where(user_id: current_user.id).page(params[:page]).per(8)
+    # @task = @tasks.page(params[:page]).per(8)
+    @task = current_user.tasks
     if params[:name].present? && params[:status].present? 
-      @tasks = Task.search_name_and_status(params).page(params[:page]).per(8)
+      @tasks = @task.search_name_and_status(params).page(params[:page]).per(8)
     elsif params[:name].present?
-      @tasks = Task.search_name(params).page(params[:page]).per(8)
+      @tasks = @task.search_name(params).page(params[:page]).per(8)
     elsif params[:status].present? 
-    @tasks = Task.search_status(params).page(params[:page]).per(8)
+    @tasks = @task.search_status(params).page(params[:page]).per(8)
     elsif params[:sort_deadline]  == 'true'
-      @tasks = Task.order(deadline: :desc).page(params[:page]).per(8)
+      @tasks = @task.order(deadline: :desc).page(params[:page]).per(8)
     elsif params[:sort_priority] == 'true'
-      @tasks = Task.order(priority: :asc).page(params[:page]).per(8)
+      @tasks = @task.order(priority: :asc).page(params[:page]).per(8)
     else
-      @tasks = Task.order(created_at: :desc).page(params[:page]).per(8)
+      @tasks = @task.order(created_at: :desc).page(params[:page]).per(8)
     end
-    @tasks = Task.where(user_id: current_user.id).page(params[:page]).per(8)
+    @tasks = @tasks.page(params[:page])
   end
-    # @task = @tasks.page(params[:page]).per(PER)
 
 
   def new
     @task = Task.new
   end
   
-    def show
-    end
+  def show
+  end
   
-    def edit
-    end
+  def edit
+  end
   
-  
-
-
-    def create
-      @task = current_user.tasks.build(task_params)
+  def create
+    @task = current_user.tasks.build(task_params)
       if params[:back]
         render :new
       else
@@ -47,7 +47,8 @@ class TasksController < ApplicationController
         render :new
         end
       end
-    end
+  end
+  
 
     def update
       @task = Task.find(params[:id])
@@ -68,22 +69,32 @@ class TasksController < ApplicationController
     #   @task = current_user.tasks.build(task_params)
     #   render :new if @task.invalid?
     # end
+
+
+    private
+  
+    def task_params
+      params.require(:task).permit(:id, :name, :description, :priority, :deadline, :status, :page)
+    end
+  
+    def set_task
+      @task = Task.find(params[:id])
+    end
+  
+    def involved_task
+      unless logged_in?
+        redirect_to new_session_path
+        flash[:notice] = "ログインしてください"
+      end
+    end
+  
+    def gurantee_accurate_user
+      if current_user.id != @task.user_id && current_user.admin
+        redirect_to tasks_path
+        flash[:notice] = "権限ありません"
+      end
+    end
+  end 
   
   
     
-  private
-
-  def task_params
-    params.require(:task).permit(:name, :description, :priority, :deadline, :status, :page)
-  end
-
-  def set_task
-    @task = Task.find(params[:id])
-  end
-
-  def require_task
-    unless logged_in?
-      redirect_to new_session_path, notice: 'ログインしてください'
-    end
-  end
-end
