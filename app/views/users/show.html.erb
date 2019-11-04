@@ -1,5 +1,9 @@
 <h1><%= @user.name %>のページ</h1>
+<div class="form-group">
+<tr>
+<td>メールアドレス</p></td>
+<td><%= @user.email %></td>
+</tr>
+</div>
 
-<p>メールアドレス:<%= @user.email %></p>
-
-<%= link_to 'Task', tasks_path %>
+<%= link_to 'タスク一覧', tasks_path, class: "btn btn-large btn-primary" %>

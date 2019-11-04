@@ -8,7 +8,7 @@
 User.create!(
   name: 'fumi',
   email: 'test1@example.com',
-  password: '2222',
-  password_confirmation: '2222',
+  password: '222222',
+  password_confirmation: '222222',
   admin: true
   )
