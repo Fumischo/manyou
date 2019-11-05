@@ -13,10 +13,12 @@ RSpec.feature "ユーザー機能", type: :feature do
 
   scenario "ユーザー登録" do
     expect(page).to have_content 'Profile Logout'
+    save_and_open_page
   end
 
   scenario "ログイン中はユーザー登録画面に行けない" do
     visit new_user_path
+    save_and_open_page
     expect(page).to have_content '既にログイン済です'
   end
 

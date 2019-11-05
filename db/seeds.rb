@@ -12,3 +12,7 @@ User.create!(
   password_confirmation: '222222',
   admin: true
   )
+
+  10.times do |index|
+    Label.create(name: "ラベル#{index}")
+  end

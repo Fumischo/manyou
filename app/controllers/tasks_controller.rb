@@ -22,9 +22,9 @@ class TasksController < ApplicationController
     else
       @tasks = @task.order(created_at: :desc).page(params[:page]).per(8)
     end
-    @tasks = @tasks.page(params[:page]).per(8)
+    @tasks = @tasks.page(params[:page])
   end
-
+    
 
   def new
     @task = Task.new
@@ -74,7 +74,7 @@ class TasksController < ApplicationController
     private
   
     def task_params
-      params.require(:task).permit(:id, :name, :description, :priority, :deadline, :status, :page)
+      params.require(:task).permit(:id, :name, :description, :priority, :deadline, :status, :page,)
     end
   
     def set_task

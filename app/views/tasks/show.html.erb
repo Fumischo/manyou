@@ -16,5 +16,6 @@
   <p><%= t('.description') %>:<%= @task.description %></p>
   <p>終了期限: <%= @task.deadline.strftime("%Y年%m月%d日") %></p>
   <p>進捗状況: <%= @task.status %></p>
+  <p>カテゴリー:<%= @task.labels.pluck(:name) %></p>
 
 </div>
