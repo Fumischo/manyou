@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+  root to: 'tasks#index'
+  resources :sessions, only: [:new, :create, :destroy]
+  resources :users
+  resources :tasks 
   namespace :admin do
     resources :users
   end
-  root to: 'tasks#index'
-  resources :tasks do
-    collection do
-      post :confirm
-    end
-  end
+  resources :labelings
+
+  get '*not_found' => 'application#routing_error'
+  post '*not_found' => 'application#routing_error'
 end

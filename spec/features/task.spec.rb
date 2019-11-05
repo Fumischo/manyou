@@ -3,11 +3,17 @@ require 'rails_helper'
 # このRSpec.featureの右側に、「タスク管理機能」のように、テスト項目の名称を書きます（do ~ endでグループ化されています）
 RSpec.feature "タスク管理機能", type: :feature do
   background do
-    @task = FactoryBot.create(:task)
-    @task1 = FactoryBot.create(:second_task)
-    @task2 = FactoryBot.create(:third_task)
-    
+    @user = FactoryBot.create(:user)
+    @task = FactoryBot.create(:task, user_id: @user.id)
+    @task1 = FactoryBot.create(:second_task, user_id: @user.id)
+    @task2 = FactoryBot.create(:third_task, user_id: @user.id)
+    visit new_session_path
+    fill_in 'session[email]', with: 'hoge@example.com'
+    fill_in 'session[password]', with: 'damnit'
+    click_button 'Log in'
   end
+
+    
   scenario "タスク一覧のテスト" do
     visit tasks_path
     # save_and_open_page
@@ -23,6 +29,7 @@ RSpec.feature "タスク管理機能", type: :feature do
     expect(page).to have_content 'Factoryで作ったデフォルトのコンテント1'
     expect(page).to have_content 'Factoryで作ったデフォルトのコンテント1'
   end
+  
   scenario "タスク詳細のテスト" do
     visit task_path(@task)
     expect(page).to have_content 'Factoryで作ったデフォルトのコンテント1'

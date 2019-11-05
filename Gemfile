@@ -53,8 +53,10 @@ group :test do
   gem 'database_cleaner'
   gem 'webdrivers'
   gem 'factory_bot_rails'
+  gem 'database_cleaner'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'enum_help'
 gem 'ransack'
+gem 'bcrypt', '3.1.11'

@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+User.create!(
+  name: 'fumi',
+  email: 'test1@example.com',
+  password: '222222',
+  password_confirmation: '222222',
+  admin: true
+  )
+
+  10.times do |index|
+    Label.create(name: "ラベル#{index}")
+  end
