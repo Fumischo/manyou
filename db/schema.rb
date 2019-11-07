@@ -16,10 +16,12 @@ ActiveRecord::Schema.define(version: 2019_11_05_022156) do
   enable_extension "plpgsql"
 
   create_table "labelings", force: :cascade do |t|
-    t.integer "task_id"
-    t.integer "label_id"
+    t.bigint "task_id"
+    t.bigint "label_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["label_id"], name: "index_labelings_on_label_id"
+    t.index ["task_id"], name: "index_labelings_on_task_id"
   end
 
   create_table "labels", force: :cascade do |t|
