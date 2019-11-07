@@ -10,12 +10,14 @@
 
   <body>
     <% if logged_in? %>
-      <%= link_to "Profile", admin_user_path(current_user.id), class:"btn btn-outline-dark" %>
-      <%= link_to "Logout", new_session_path(current_user.id), method: :delete, class:"btn btn-outline-dark" %>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <%= link_to "Profile", admin_user_path(current_user.id), class: "btn btn-outline-light" %>
+      <%= link_to "Logout", new_session_path(current_user.id), method: :delete, class:"btn btn-outline-light" %>
     <% else %>
       <%= link_to "Sign up", new_user_path, class:"btn btn-outline-dark"%>
       <%= link_to "Login", new_session_path, class:"btn btn-outline-dark" %>
     <% end %>
+    </nav>
     <div class="container">
     <% flash.each do |key, value| %>
       <%= content_tag(:div, value, class: "#{key}") %>

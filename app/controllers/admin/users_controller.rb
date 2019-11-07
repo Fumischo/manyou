@@ -4,7 +4,6 @@ class Admin::UsersController < ApplicationController
 
   def index
     @users = User.includes(:tasks).all.order(created_at: :DESC)
-    # @task = Task.all
   end
 
 
@@ -85,10 +84,3 @@ class Admin::UsersController < ApplicationController
     end
   end
 end
-
-  # def if_not_admin
-  #   unless current_user.admin?
-  #     redirect_to tasks_path
-  #   end
-  # end
-# end
