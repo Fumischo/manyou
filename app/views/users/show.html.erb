@@ -8,7 +8,8 @@
 <th>優先順位</th>
 <th>終了期限</th>
 <th>ラベル</th>
-<th colspan="7"></th>
+<th colspan="11"></th>
+
     <% @tasks.each do |task| %>
     <tr>
       <td><%= task.name %></td>
@@ -17,9 +18,9 @@
       <td><%= task.status_i18n %></td>
       <td><%= task.priority_i18n %></td>
       <td><%= task.deadline.strftime("%Y年%m月%d日") %></td>
-      <td><% task.labels.each do |label| %>
+      <% task.labels.each do |label| %>
       <td><%= label.name %></td>
-      <th colspan="6"></th>
+      <th colspan="9"></th>
       <% end %>
     </tr>
     <% end %>
@@ -27,3 +28,4 @@
 </div>
 
 <%= link_to 'タスク一覧', tasks_path, class: "btn btn-large btn-primary" %>
+      
