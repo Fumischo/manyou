@@ -18,9 +18,25 @@ FactoryBot.define do
   end
 
   factory :third_user, class: User do
-    name { "fumui3" }
+    name { "fumi3" }
     email { "hoge3@example.com" }
     password { "damnheck" }
     password_confirmation { "damnheck" }
   end
+
+  factory :label_user, class: User do
+    name { "ユーザーf" }
+    email { "f@example.com"}
+    password { "damnfuck"}
+    password_confirmation {"damnfuck"}
+  end
+
+  factory :second_label_user, class: User do
+    name { "ユーザーg" }
+    email { "g@example.com" }
+    password { "damnwell" }
+    password_confirmation { "damnwell" }
+  end
 end
+
+
