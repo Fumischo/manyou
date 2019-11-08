@@ -37,6 +37,12 @@ FactoryBot.define do
     password { "damnwell" }
     password_confirmation { "damnwell" }
   end
+  factory :third_label_user, class: User do
+    name { "ユーザーh" }
+    email { "h@example.com" }
+    password { "damnsuck" }
+    password_confirmation { "damnsuck" }
+  end
 end
 
 

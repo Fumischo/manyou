@@ -3,12 +3,14 @@ require 'rails_helper'
 RSpec.feature "タスク管理機能", type: :feature do
   background do
     FactoryBot.create(:label_user)
-    FactoryBot.create(:second_label_user)
     FactoryBot.create(:label)
-    FactoryBot.create(:second_label)
     FactoryBot.create(:label_task)
     FactoryBot.create(:second_label_task)
+    FactoryBot.create(:label_task)
+    FactoryBot.create(:second_label_user)
     FactoryBot.create(:labeling)
+    FactoryBot.create(:second_label)
+    FactoryBot.create(:second_label_task)
     FactoryBot.create(:second_labeling)
   end
   before do
@@ -17,12 +19,13 @@ RSpec.feature "タスク管理機能", type: :feature do
     fill_in 'session[password]', with: 'damnfuck'
     click_button 'Log in'
   end
-
-  scenario "ラベルユーザー１一覧のテスト" do
+  
+  scenario "ラベル検索でラベル名を絞り込めるかのテスト" do
     visit tasks_path
-    save_and_open_page
     select 'fumischo', from: 'label_id'
     click_button 'Search'
+    binding.pry
+    save_and_open_page
     expect(page).to have_content 'fumischo'
   end
 end

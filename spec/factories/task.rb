@@ -44,6 +44,6 @@ FactoryBot.define do
     deadline { DateTime.now + 10 }
     status { 1 }
     priority { 2 }
-    user_id {2}
+    user_id {1}
   end
 end
