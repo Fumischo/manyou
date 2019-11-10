@@ -8,19 +8,23 @@ class TasksController < ApplicationController
   def index
     # @tasks = Task.where(user_id: current_user.id).page(params[:page]).per(8)
     # @task = @tasks.page(params[:page]).per(8)
-    @task = current_user.tasks
+    # @task = current_user.tasks
+    # @tasks = Task.all
+    @task = @current_user.tasks.where(user_id: @current_user.id)
     if params[:name].present? && params[:status].present? 
       @tasks = @task.search_name_and_status(params).page(params[:page]).per(8)
     elsif params[:name].present?
       @tasks = @task.search_name(params).page(params[:page]).per(8)
     elsif params[:status].present? 
-    @tasks = @task.search_status(params).page(params[:page]).per(8)
+      @tasks = @task.search_status(params).page(params[:page]).per(8)
+    elsif params[:label_id].present?
+      @tasks = current_user.tasks.search_label(params[:label_id]).page(params[:page]).per(8)
     elsif params[:sort_deadline]  == 'true'
-      @tasks = @task.order(deadline: :desc).page(params[:page]).per(8)
+      @tasks = @current_user.tasks.page(params[:page]).per(8).order(deadline: :desc)
     elsif params[:sort_priority] == 'true'
-      @tasks = @task.order(priority: :asc).page(params[:page]).per(8)
+      @tasks = @current_user.tasks.page(params[:page]).per(8).order(priority: :asc)
     else
-      @tasks = @task.order(created_at: :desc).page(params[:page]).per(8)
+      @tasks = @current_user.tasks.page(params[:page]).per(8).order(created_at: :desc)
     end
     @tasks = @tasks.page(params[:page])
   end
@@ -37,11 +41,11 @@ class TasksController < ApplicationController
   end
   
   def create
-    @task = current_user.tasks.build(task_params)
+    @tasks = current_user.tasks.build(task_params)
       if params[:back]
         render :new
       else
-        if @task.save
+        if @tasks.save
           redirect_to root_path, notice: "登録完了"
         else
         render :new
@@ -51,7 +55,7 @@ class TasksController < ApplicationController
   
 
     def update
-      @task = Task.find(params[:id])
+      # @task = Task.find(params[:id])
       if @task.update(task_params)
       redirect_to tasks_path, notice: "更新完了"
       else 
@@ -74,8 +78,9 @@ class TasksController < ApplicationController
     private
   
     def task_params
-      params.require(:task).permit(:id, :name, :description, :priority, :deadline, :status, :page,)
+      params.require(:task).permit(:id, :name, :description, :priority, :deadline, :status, :page, { label_ids: [] })
     end
+
   
     def set_task
       @task = Task.find(params[:id])

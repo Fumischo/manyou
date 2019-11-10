@@ -10,13 +10,9 @@ class Task < ApplicationRecord
   has_many :labelings, dependent: :destroy
   has_many :labels, through: :labelings
 
-  # scope :search_name, -> (params) { where("name LIKE ?", "%#{params[:name]}%")}
-  # scope :search_status, -> (params) { where("status::text LIKE ?", "%#{params[:status]}%")}
-  # scope :search_name_and_status, -> (params) { where("name LIKE ?", "%#{params[:name]}%").where("status::text LIKE ?", "%#{params[:status]}%") }
+  scope :search_name, -> (params) { where("name LIKE ?", "%#{params[:name]}%")}
+  scope :search_status, -> (params) { where("status::text LIKE ?", "%#{params[:status]}%")}
+  scope :search_name_and_status, -> (params) { where("name LIKE ?", "%#{params[:name]}%").where("status::text LIKE ?", "%#{params[:status]}%") }
+  scope :search_label, -> (label_id) {Task.all.joins(:labels).where(labels: { id: label_id})}
   # scope :search_status, -> (params) { where("label_id::text LIKE ?", "%#{params[:label_id]}%")}
-
-  scope :task, -> (params) {where('(name LIKE ?) AND (status::text LIKE ?)',
-  "%#{params[:name]}%",
-  "%#{params[:status]}%"
-  )}
 end

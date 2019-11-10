@@ -1,9 +1,29 @@
 <h1><%= @user.name %>のページ</h1>
-<div class="form-group">
-<tr>
-<td>メールアドレス</p></td>
-<td><%= @user.email %></td>
-</tr>
-</div>
 
-<%= link_to 'タスク一覧', tasks_path, class: "btn btn-large btn-primary" %>
+<table class="table">
+<th>タイトル</th>
+<th>詳細</th>
+<th>作成日時</th>
+<th>ステータス</th>
+<th>優先順位</th>
+<th>終了期限</th>
+<th>ラベル</th>
+<th colspan="11"></th>
+
+    <% @tasks.each do |task| %>
+    <tr>
+      <td><%= task.name %></td>
+      <td><%= task.description %></td>
+      <td><%= task.created_at.strftime("%Y年%m月%d日") %></td>
+      <td><%= task.status_i18n %></td>
+      <td><%= task.priority_i18n %></td>
+      <td><%= task.deadline.strftime("%Y年%m月%d日") %></td>
+      <% task.labels.each do |label| %>
+      <td><%= label.name %></td>
+      <th colspan="9"></th>
+      <% end %>
+    </tr>
+    <% end %>
+  </table>
+  <%= link_to 'タスク一覧', tasks_path, class: "btn btn-large btn-primary" %>
+</div>

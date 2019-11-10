@@ -13,6 +13,12 @@ User.create!(
   admin: true
   )
 
-  10.times do |index|
-    Label.create(name: "ラベル#{index}")
-  end
+  # 10.times do |index|
+  #   Label.create(name: "ラベル#{index}")
+  # end
+
+  Label.create([
+    { name: 'Ruby' },
+    { name: 'Ruby on Rails'},
+    {name: 'Python'}
+  ])
